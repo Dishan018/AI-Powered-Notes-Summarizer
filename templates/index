@@ -1,0 +1,23 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Notes Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 AI Notes Summarizer</h1>
+        <form method="POST" action="/summarize" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".txt,.pdf" required>
+            <button type="submit">Summarize</button>
+        </form>
+
+        {% if summary %}
+            <h2>🔍 Summary:</h2>
+            <textarea readonly>{{ summary }}</textarea>
+        {% endif %}
+    </div>
+</body>
+</html>
