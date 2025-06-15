@@ -1,0 +1,23 @@
+from fastapi import FastAPI, Form, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from transformers import pipeline
+from fastapi.staticfiles import StaticFiles
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Load summarization model
+summarizer = pipeline("summarization")
+
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request, "summary": ""})
+
+@app.post("/summarize", response_class=HTMLResponse)
+async def summarize(request: Request, input_text: str = Form(...)):
+    if len(input_text.strip()) == 0:
+        return templates.TemplateResponse("index.html", {"request": request, "summary": "Please enter valid text."})
+    result = summarizer(input_text, max_length=150, min_length=40, do_sample=False)[0]['summary_text']
+    return templates.TemplateResponse("index.html", {"request": request, "summary": result})
