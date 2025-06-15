@@ -1,41 +1,21 @@
-# 🧠 AI-Powered Notes Summarizer
+# 🧠 AI-Powered Notes Summarizer (FastAPI)
 
-A simple yet powerful web app that summarizes long notes, articles, or PDFs using Natural Language Processing (NLP). Built with Python, Flask, and Hugging Face Transformers, this tool helps students and professionals quickly generate clean summaries from large documents.
-
----
+This is a smart web app that summarizes long text or notes using Hugging Face's transformer models and FastAPI. It's useful for students, readers, or anyone needing quick summaries.
 
 ## 🚀 Features
+- Accepts long input text
+- Summarizes using pre-trained transformer models (T5/BART)
+- Clean and minimal web interface
 
-- 📄 Upload text or PDF files
-- 🤖 AI-generated summaries using Hugging Face models
-- 🌐 Simple web interface (Flask + HTML/CSS)
-- 💾 Local processing — no cloud login required
-- ⚡ Fast, accurate, and responsive
+## 🛠 Technologies Used
+- FastAPI
+- Hugging Face Transformers
+- HTML, CSS, Jinja2
 
----
-
-## 🛠️ Tech Stack
-
-- **Backend**: Python, Flask  
-- **AI/NLP**: Hugging Face Transformers (BART model)  
-- **Frontend**: HTML, CSS  
-- **PDF Parsing**: PyPDF2
-
----
-
-## 📦 Installation
-
+## ▶️ Run It Locally
 ```bash
-# Clone the repo
-git clone https://github.com/your-username/ai-notes-summarizer.git
-cd ai-notes-summarizer
-
-# Create virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-# Run the app
-python app.py
+Open `http://127.0.0.1:8000` in your browser.
